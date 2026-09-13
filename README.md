@@ -8,7 +8,7 @@ number is traceable back to a public emissions data source.
 This is an MVP: no accounts, no backend, no database. Your answers live only in your
 browser (`localStorage`), and the whole app is a static site.
 
-**Live app:** https://awingfu.github.io/climate-impact-visualizer/
+**Live app:** http://www.adamwlui.com/climate-impact-visualizer/
 
 ## Stack
 
@@ -61,19 +61,17 @@ src/
 ## Deployment
 
 The app builds to a static export (`next.config.ts` sets `output: "export"`) and
-deploys to GitHub Pages from the `gh-pages` branch.
+deploys straight to GitHub Pages through GitHub Actions, no `gh-pages` branch
+involved.
 
-- `.github/workflows/gh-pages.deploy.yml` builds and deploys on every push to
-  `main`, publishing `./out` to `gh-pages`.
-- `.github/workflows/preview.yml` builds a preview for each pull request under
-  `pr-preview/pr-<number>`, and removes it when the PR closes.
-
-Both workflows set `NEXT_PUBLIC_BASE_PATH` so asset and route URLs resolve correctly
-under the `/climate-impact-visualizer/` subpath GitHub Pages serves the site from.
+`.github/workflows/deploy.yml` runs on every push to `main`: it installs, tests,
+builds, and hands the `./out` folder to `actions/upload-pages-artifact`, then a
+second job publishes it with `actions/deploy-pages`. The base path comes from
+`actions/configure-pages`, so it stays correct even if the repo is renamed or the
+custom domain setup changes.
 
 One-time repo setup, if Pages isn't already enabled: in **Settings > Pages**, set
-the source to the `gh-pages` branch (root). The first push to `main` after that
-creates the branch and publishes the site.
+Source to "GitHub Actions". After that, every push to `main` redeploys automatically.
 
 To build the static export locally with the same base path CI uses:
 
