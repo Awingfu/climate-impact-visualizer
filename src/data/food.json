@@ -1,0 +1,58 @@
+[
+  {
+    "id": "meal_beef",
+    "category": "food",
+    "label": "Beef meal",
+    "activityUnit": "meal",
+    "co2ePerUnit": 9.0,
+    "geography": "Global",
+    "year": 2018,
+    "source": {
+      "name": "Our World in Data, based on Poore & Nemecek (2018), Science",
+      "url": "https://ourworldindata.org/environmental-impacts-of-food"
+    },
+    "methodology": "OWID reports a global-average footprint of ~60 kg CO2eq per kg of beef (farm to retail, including land-use change). Converted to a per-meal figure assuming a 150 g cooked-meat serving, a commonly used reference serving size. Actual footprints vary widely by production system and portion size."
+  },
+  {
+    "id": "meal_chicken",
+    "category": "food",
+    "label": "Chicken meal",
+    "activityUnit": "meal",
+    "co2ePerUnit": 0.92,
+    "geography": "Global",
+    "year": 2018,
+    "source": {
+      "name": "Our World in Data, based on Poore & Nemecek (2018), Science",
+      "url": "https://ourworldindata.org/environmental-impacts-of-food"
+    },
+    "methodology": "OWID reports a global-average footprint of ~6.1 kg CO2eq per kg of poultry meat. Converted to a per-meal figure assuming a 150 g cooked-meat serving."
+  },
+  {
+    "id": "meal_vegetarian",
+    "category": "food",
+    "label": "Vegetarian meal",
+    "activityUnit": "meal",
+    "co2ePerUnit": 1.27,
+    "geography": "UK",
+    "year": 2014,
+    "source": {
+      "name": "Scarborough et al. (2014), Climatic Change",
+      "url": "https://link.springer.com/article/10.1007/s10584-014-1169-1"
+    },
+    "methodology": "Scarborough et al. found self-selected vegetarian diets in the UK produce ~3.81 kg CO2e/day. Divided by an assumed 3 meals/day to estimate a per-meal figure."
+  },
+  {
+    "id": "meal_vegan",
+    "category": "food",
+    "label": "Vegan meal",
+    "activityUnit": "meal",
+    "co2ePerUnit": 0.96,
+    "geography": "UK",
+    "year": 2014,
+    "source": {
+      "name": "Scarborough et al. (2014), Climatic Change",
+      "url": "https://link.springer.com/article/10.1007/s10584-014-1169-1"
+    },
+    "methodology": "Scarborough et al. found self-selected vegan diets in the UK produce ~2.89 kg CO2e/day. Divided by an assumed 3 meals/day to estimate a per-meal figure."
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "car_gasoline_average",
+    "category": "transportation",
+    "label": "Average gasoline car",
+    "activityUnit": "mile",
+    "co2ePerUnit": 0.404,
+    "geography": "US",
+    "year": 2024,
+    "source": {
+      "name": "US EPA Greenhouse Gas Equivalencies Calculator",
+      "url": "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator-calculations-and-references"
+    },
+    "methodology": "EPA's published on-road average for a typical gasoline passenger vehicle, derived from average fuel economy and per-gallon tailpipe CO2, CH4, and N2O emissions."
+  },
+  {
+    "id": "car_suv_truck_gasoline",
+    "category": "transportation",
+    "label": "Gasoline SUV or truck",
+    "activityUnit": "mile",
+    "co2ePerUnit": 0.428,
+    "geography": "US",
+    "year": 2024,
+    "source": {
+      "name": "US EPA Greenhouse Gas Equivalencies Calculator + EPA Automotive Trends Report",
+      "url": "https://www.epa.gov/automotive-trends/highlights-automotive-trends-report"
+    },
+    "methodology": "Derived by scaling the EPA average passenger vehicle factor (0.404 kg/mile) by the ratio of the model-year-2024 fleetwide average fuel economy (27.2 mpg) to the truck-SUV average (25.7 mpg), per the EPA Automotive Trends Report. This is an approximation, not a directly published EPA per-mile SUV/truck factor."
+  },
+  {
+    "id": "car_hybrid",
+    "category": "transportation",
+    "label": "Hybrid car",
+    "activityUnit": "mile",
+    "co2ePerUnit": 0.242,
+    "geography": "US",
+    "year": 2024,
+    "source": {
+      "name": "Approximation based on US EPA average vehicle factor",
+      "url": "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator-calculations-and-references"
+    },
+    "methodology": "PLACEHOLDER: no single official EPA per-mile hybrid factor was available. Estimated as ~60% of the average gasoline car factor, reflecting the commonly reported ~40% fuel-economy improvement of hybrids over conventional gasoline vehicles. Treat as an order-of-magnitude estimate.",
+    "isPlaceholder": true
+  },
+  {
+    "id": "ev_efficiency_kwh_per_mile",
+    "category": "transportation",
+    "label": "Electric vehicle efficiency",
+    "activityUnit": "kWh per mile",
+    "co2ePerUnit": 0.39,
+    "geography": "US",
+    "year": 2025,
+    "source": {
+      "name": "US DOE/EPA fueleconomy.gov",
+      "url": "https://www.epa.gov/greenvehicles/comparison-your-car-vs-electric-vehicle"
+    },
+    "methodology": "Model year 2025 median EV energy consumption (39 kWh per 100 miles combined). This is an electricity-use factor, not a CO2e factor; it is combined with the electricity grid factor (see electricity.json) to estimate EV emissions per mile."
+  },
+  {
+    "id": "public_transit_average",
+    "category": "transportation",
+    "label": "Public transit (bus or rail, blended)",
+    "activityUnit": "mile",
+    "co2ePerUnit": 0.15,
+    "geography": "US",
+    "year": 2024,
+    "source": {
+      "name": "US EPA GHG Emission Factors Hub / American Public Transportation Association",
+      "url": "https://www.epa.gov/climateleadership/ghg-emission-factors-hub"
+    },
+    "methodology": "PLACEHOLDER: the EPA Emission Factors Hub publishes separate per-passenger-mile bus and rail transit factors, but the exact current values could not be confidently extracted for this MVP. 0.15 kg CO2e/mile is a rough order-of-magnitude blend of typical published bus and rail transit intensities and should be replaced with the exact EPA hub figures.",
+    "isPlaceholder": true
+  }
+]

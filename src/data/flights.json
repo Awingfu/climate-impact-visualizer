@@ -1,0 +1,44 @@
+[
+  {
+    "id": "flight_domestic_per_km",
+    "category": "flights",
+    "label": "Domestic flight",
+    "activityUnit": "passenger-km",
+    "co2ePerUnit": 0.229,
+    "geography": "Global",
+    "year": 2025,
+    "source": {
+      "name": "UK DEFRA / BEIS Greenhouse Gas Conversion Factors",
+      "url": "https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting"
+    },
+    "methodology": "DEFRA 2025 domestic flight factor, average passenger, including radiative forcing. Applied to an assumed average domestic round trip distance (see calculations/flights.ts) since users report trips, not distances."
+  },
+  {
+    "id": "flight_short_haul_per_km",
+    "category": "flights",
+    "label": "Short-haul international flight (under ~3,700 km)",
+    "activityUnit": "passenger-km",
+    "co2ePerUnit": 0.126,
+    "geography": "Global",
+    "year": 2025,
+    "source": {
+      "name": "UK DEFRA / BEIS Greenhouse Gas Conversion Factors",
+      "url": "https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting"
+    },
+    "methodology": "DEFRA 2025 short-haul economy-class factor, including radiative forcing."
+  },
+  {
+    "id": "flight_long_haul_per_km",
+    "category": "flights",
+    "label": "Long-haul international flight (over ~3,700 km)",
+    "activityUnit": "passenger-km",
+    "co2ePerUnit": 0.117,
+    "geography": "Global",
+    "year": 2025,
+    "source": {
+      "name": "UK DEFRA / BEIS Greenhouse Gas Conversion Factors",
+      "url": "https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting"
+    },
+    "methodology": "DEFRA 2025 long-haul economy-class factor, including radiative forcing. Used as the default factor for a user-reported 'international trip' since most international travel involves at least one long-haul segment."
+  }
+]

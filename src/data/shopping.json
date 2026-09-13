@@ -1,0 +1,32 @@
+[
+  {
+    "id": "clothing_item",
+    "category": "shopping",
+    "label": "Clothing item",
+    "activityUnit": "item",
+    "co2ePerUnit": 10,
+    "geography": "Global",
+    "year": 2024,
+    "source": {
+      "name": "Blended estimate from published apparel lifecycle-assessment studies (e.g. Mistra Future Fashion)",
+      "url": "https://www.mdpi.com/2071-1050/17/2/470"
+    },
+    "methodology": "PLACEHOLDER: per-garment footprints vary enormously by material and item (published studies range from ~2-7 kg CO2e for a cotton t-shirt to well over 20 kg CO2e for heavier garments). 10 kg CO2e/item is a rough blended midpoint across common garment types, not a precise or authoritative figure. Treat shopping estimates as order-of-magnitude only.",
+    "isPlaceholder": true
+  },
+  {
+    "id": "electronics_item",
+    "category": "shopping",
+    "label": "Electronics purchase",
+    "activityUnit": "item",
+    "co2ePerUnit": 200,
+    "geography": "Global",
+    "year": 2024,
+    "source": {
+      "name": "Blended estimate from published device lifecycle-assessment studies",
+      "url": "https://circularcomputing.com/news/carbon-footprint-laptop/"
+    },
+    "methodology": "PLACEHOLDER: manufacturing footprints vary widely by device (published estimates: ~55-95 kg CO2e for a smartphone, ~150-330+ kg CO2e for a laptop). 200 kg CO2e/item is a rough blended midpoint representing a generic 'electronics purchase,' not a specific product. Treat as order-of-magnitude only.",
+    "isPlaceholder": true
+  }
+]

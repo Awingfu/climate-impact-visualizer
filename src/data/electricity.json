@@ -1,0 +1,30 @@
+[
+  {
+    "id": "electricity_us_average",
+    "category": "home",
+    "label": "Electricity (US national average)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.394,
+    "geography": "US",
+    "year": 2022,
+    "source": {
+      "name": "US EPA Greenhouse Gas Equivalencies Calculator (eGRID-based national average)",
+      "url": "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator-calculations-and-references"
+    },
+    "methodology": "EPA's national weighted-average electricity emission rate. This is a US-wide average; actual grid intensity varies significantly by state and utility. Location-specific electricity factors are a planned future enhancement (see /methodology)."
+  },
+  {
+    "id": "natural_gas_therm",
+    "category": "home",
+    "label": "Natural gas",
+    "activityUnit": "therm",
+    "co2ePerUnit": 5.3,
+    "geography": "US",
+    "year": 2024,
+    "source": {
+      "name": "US EPA Greenhouse Gas Equivalencies Calculator",
+      "url": "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator-calculations-and-references"
+    },
+    "methodology": "EPA's standard CO2 emission factor for natural gas combustion, converted to a per-therm basis."
+  }
+]
