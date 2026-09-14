@@ -1,6 +1,6 @@
 import type { ClimateProfile, EmissionFactors, EmissionResult } from "../types";
 import { findFactor } from "../factors";
-import { electricityFactorIdForCountry } from "../geography";
+import { electricityCo2ePerKwh, electricityFactorIds } from "../geography";
 
 const MONTHS_PER_YEAR = 12;
 
@@ -19,8 +19,8 @@ function carFactorId(vehicleType: ClimateProfile["transportation"]["vehicleType"
 export function calculateTransportation(
   profile: ClimateProfile["transportation"],
   factors: EmissionFactors,
-  /** Country selected on the home energy step, used for EV charging emissions. Defaults to the US average. */
-  homeCountryCode?: string
+  /** Location selected on the home energy step, used for EV charging emissions. Defaults to the US average. */
+  homeLocation?: Pick<ClimateProfile["home"], "countryCode" | "usStateCode">
 ): EmissionResult {
   const annualCarMiles = Math.max(0, profile.carMilesPerMonth) * MONTHS_PER_YEAR;
   const annualTransitMiles = Math.max(0, profile.publicTransitMilesPerMonth) * MONTHS_PER_YEAR;
@@ -33,9 +33,9 @@ export function calculateTransportation(
 
   if (profile.fuelType === "electric") {
     const evEfficiency = findFactor(factors.transportation, "ev_efficiency_kwh_per_mile");
-    const electricityFactor = findFactor(factors.home, electricityFactorIdForCountry(homeCountryCode));
-    carKgCo2e = annualCarMiles * evEfficiency.co2ePerUnit * electricityFactor.co2ePerUnit;
-    carFactorIds.push(electricityFactor.id);
+    const electricityCo2ePerUnit = electricityCo2ePerKwh(homeLocation ?? {}, factors);
+    carKgCo2e = annualCarMiles * evEfficiency.co2ePerUnit * electricityCo2ePerUnit;
+    carFactorIds.push(...electricityFactorIds(homeLocation ?? {}));
   } else {
     const carFactor = findFactor(factors.transportation, factorId);
     carKgCo2e = annualCarMiles * carFactor.co2ePerUnit;

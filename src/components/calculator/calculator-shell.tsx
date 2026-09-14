@@ -1,36 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Car, Plane, Home as HomeIcon, Utensils, Shirt } from "lucide-react";
+import { ArrowLeft, ArrowRight, Car, Plane, Home as HomeIcon, Utensils, Shirt, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CATEGORY_STEPS, stepIndex } from "./category-config";
+import { WIZARD_STEPS, wizardStepIndex } from "./category-config";
 import { formatCo2e } from "@/lib/format";
 import { useProfile } from "@/components/profile-provider";
 import { calculateTotalFootprint } from "@/climate";
 import { cn } from "cn";
 
-const ICONS = { car: Car, plane: Plane, home: HomeIcon, utensils: Utensils, shirt: Shirt };
+const ICONS = { car: Car, plane: Plane, home: HomeIcon, utensils: Utensils, shirt: Shirt, "map-pin": MapPin };
 
 type CalculatorShellProps = {
   path: string;
   subtitle: string;
-  categoryKgCo2ePerYear: number;
+  /** Omit for steps that aren't an emission category (e.g. the region step). */
+  categoryKgCo2ePerYear?: number;
   children: React.ReactNode;
 };
 
 export function CalculatorShell({ path, subtitle, categoryKgCo2ePerYear, children }: CalculatorShellProps) {
   const { profile } = useProfile();
-  const index = stepIndex(path);
-  const step = CATEGORY_STEPS[index];
-  const prev = index > 0 ? CATEGORY_STEPS[index - 1] : null;
-  const next = index < CATEGORY_STEPS.length - 1 ? CATEGORY_STEPS[index + 1] : null;
+  const index = wizardStepIndex(path);
+  const step = WIZARD_STEPS[index];
+  const prev = index > 0 ? WIZARD_STEPS[index - 1] : null;
+  const next = index < WIZARD_STEPS.length - 1 ? WIZARD_STEPS[index + 1] : null;
   const Icon = ICONS[step.icon as keyof typeof ICONS];
   const runningTotal = calculateTotalFootprint(profile).totalKgCo2ePerYear;
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
       <ol className="mb-8 flex items-center gap-1.5" aria-label="Calculator progress">
-        {CATEGORY_STEPS.map((s, i) => (
+        {WIZARD_STEPS.map((s, i) => (
           <li key={s.path} className="flex-1">
             <span
               className={cn(
@@ -43,7 +44,7 @@ export function CalculatorShell({ path, subtitle, categoryKgCo2ePerYear, childre
         ))}
       </ol>
       <span className="sr-only" role="status">
-        Step {index + 1} of {CATEGORY_STEPS.length}: {step.title}
+        Step {index + 1} of {WIZARD_STEPS.length}: {step.title}
       </span>
 
       <div
@@ -62,12 +63,12 @@ export function CalculatorShell({ path, subtitle, categoryKgCo2ePerYear, childre
           </span>
           <div>
             <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-              Step {index + 1} of {CATEGORY_STEPS.length}
+              Step {index + 1} of {WIZARD_STEPS.length}
             </p>
             <h1 className="text-2xl font-semibold">{step.title}</h1>
           </div>
         </div>
-        {categoryKgCo2ePerYear > 0 && (
+        {!!categoryKgCo2ePerYear && categoryKgCo2ePerYear > 0 && (
           <div className="shrink-0 rounded-xl border border-border bg-muted/50 px-3 py-2 text-right">
             <p className="text-xs text-muted-foreground">This category</p>
             <p className="text-sm font-semibold tabular-nums">{formatCo2e(categoryKgCo2ePerYear)}/yr</p>

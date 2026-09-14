@@ -52,4 +52,22 @@ describe("calculateHome", () => {
     const factor = findFactor(emissionFactors.home, "electricity_grid_world");
     expect(result.kgCo2ePerYear).toBeCloseTo(900 * 12 * factor.co2ePerUnit);
   });
+
+  it("uses the selected US state's grid factor when one is set", () => {
+    const result = calculateHome(
+      { ...baseProfile, electricityKwhPerMonth: 900, countryCode: "US", usStateCode: "VT" },
+      emissionFactors
+    );
+    // Vermont's eGRID2023 rate: 0.0237 kg CO2e/kWh, far below the US national average.
+    expect(result.kgCo2ePerYear).toBeCloseTo(900 * 12 * 0.0237);
+  });
+
+  it("ignores usStateCode when the country isn't the US", () => {
+    const result = calculateHome(
+      { ...baseProfile, electricityKwhPerMonth: 900, countryCode: "FR", usStateCode: "VT" },
+      emissionFactors
+    );
+    const factor = findFactor(emissionFactors.home, "electricity_grid_fra");
+    expect(result.kgCo2ePerYear).toBeCloseTo(900 * 12 * factor.co2ePerUnit);
+  });
 });

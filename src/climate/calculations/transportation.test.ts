@@ -48,11 +48,21 @@ describe("calculateTransportation", () => {
     const result = calculateTransportation(
       { ...baseProfile, carMilesPerMonth: 500, fuelType: "electric" },
       emissionFactors,
-      "FR"
+      { countryCode: "FR" }
     );
     const ev = findFactor(emissionFactors.transportation, "ev_efficiency_kwh_per_mile");
     const grid = findFactor(emissionFactors.home, "electricity_grid_fra");
     expect(result.kgCo2ePerYear).toBeCloseTo(500 * 12 * ev.co2ePerUnit * grid.co2ePerUnit);
+  });
+
+  it("uses the selected US state's grid factor for EV charging when one is set", () => {
+    const result = calculateTransportation(
+      { ...baseProfile, carMilesPerMonth: 500, fuelType: "electric" },
+      emissionFactors,
+      { countryCode: "US", usStateCode: "VT" }
+    );
+    const ev = findFactor(emissionFactors.transportation, "ev_efficiency_kwh_per_mile");
+    expect(result.kgCo2ePerYear).toBeCloseTo(500 * 12 * ev.co2ePerUnit * 0.0237);
   });
 
   it("includes public transit emissions separately in the breakdown", () => {

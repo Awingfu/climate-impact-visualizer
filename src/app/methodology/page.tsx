@@ -8,7 +8,14 @@ import {
   PER_CAPITA_SOURCE,
   TREE_CO2_KG_PER_YEAR,
   TREE_EQUIVALENCE_SOURCE,
+  GASOLINE_CO2_KG_PER_GALLON,
+  GASOLINE_EQUIVALENCE_SOURCE,
+  DRIVING_CO2_KG_PER_MILE,
+  DRIVING_EQUIVALENCE_SOURCE,
+  HOME_ELECTRICITY_CO2_KG_PER_YEAR,
+  HOME_ELECTRICITY_EQUIVALENCE_SOURCE,
 } from "@/climate/benchmarks";
+import { US_STATES, US_STATE_SOURCE, COUNTRY_ELECTRICITY_MIX, COUNTRY_MIX_SOURCE } from "@/climate/geography";
 
 export const metadata: Metadata = {
   title: "Methodology",
@@ -82,11 +89,11 @@ export default function MethodologyPage() {
           </li>
           <li>
             Electricity uses a national-average grid intensity for the country you select on the
-            home energy step (US average by default), even though actual grid carbon intensity
-            varies a lot within a country by state, province, or utility. State/region-level
-            factors would be a good next addition, but they&apos;re not part of this MVP. Country
-            selection currently only affects electricity; other categories still use general
-            averages regardless of location.
+            &ldquo;Your region&rdquo; step (US average by default). If you pick a US state, a
+            state-level factor is used instead (see the US state table below) &mdash; but outside
+            the US, intensity still only varies by country, even though it also varies by
+            province/region there in reality. Region selection currently only affects electricity
+            (and EV charging); other categories still use general averages regardless of location.
           </li>
           <li>
             SUV/truck and hybrid factors are derived approximations (see the factor table below),
@@ -167,11 +174,53 @@ export default function MethodologyPage() {
       </section>
 
       <section className="mt-10">
+        <h2 className="text-xl font-semibold">US state electricity data</h2>
+        <p className="mt-2 max-w-2xl text-muted-foreground">{US_STATE_SOURCE.methodology}</p>
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full min-w-[560px] border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-border text-left text-muted-foreground">
+                <th scope="col" className="py-2 pr-4 font-medium">State</th>
+                <th scope="col" className="py-2 pr-4 font-medium">kg CO₂e / kWh</th>
+                <th scope="col" className="py-2 pr-4 font-medium">Fossil</th>
+                <th scope="col" className="py-2 pr-4 font-medium">Nuclear</th>
+                <th scope="col" className="py-2 font-medium">Renewables</th>
+              </tr>
+            </thead>
+            <tbody>
+              {US_STATES.map((s) => (
+                <tr key={s.code} className="border-b border-border/60">
+                  <td className="py-2 pr-4">{s.name}</td>
+                  <td className="py-2 pr-4 tabular-nums">{s.co2eKgPerKwh}</td>
+                  <td className="py-2 pr-4 tabular-nums">{s.mixPercent.fossil}%</td>
+                  <td className="py-2 pr-4 tabular-nums">{s.mixPercent.nuclear}%</td>
+                  <td className="py-2 tabular-nums">{s.mixPercent.renewables}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-2 text-xs text-muted-foreground">
+          Source:{" "}
+          <a
+            href={US_STATE_SOURCE.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-emerald-700 underline underline-offset-2 hover:text-emerald-800 dark:text-emerald-400"
+          >
+            {US_STATE_SOURCE.name}
+          </a>
+          .
+        </p>
+      </section>
+
+      <section className="mt-10">
         <h2 className="text-xl font-semibold">Comparison benchmarks</h2>
         <p className="mt-2 text-muted-foreground">
           The results page compares your total to two reference points, and translates it into a
-          tree-planting equivalent for scale. These aren&apos;t emission factors (nothing is
-          multiplied against your answers) &mdash; they&apos;re fixed reference numbers.
+          handful of &ldquo;put another way&rdquo; equivalents for scale. These aren&apos;t
+          emission factors (nothing is multiplied against your answers) &mdash; they&apos;re fixed
+          reference numbers.
         </p>
 
         <div className="mt-6">
@@ -225,6 +274,101 @@ export default function MethodologyPage() {
               {TREE_EQUIVALENCE_SOURCE.name}
             </a>
             .
+          </p>
+        </div>
+
+        <div className="mt-8">
+          <h3 className="text-base font-semibold">Gasoline equivalence</h3>
+          <p className="mt-1 max-w-2xl text-xs text-muted-foreground">{GASOLINE_EQUIVALENCE_SOURCE.methodology}</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {GASOLINE_CO2_KG_PER_GALLON} kg CO₂ / gallon. Source:{" "}
+            <a
+              href={GASOLINE_EQUIVALENCE_SOURCE.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 underline underline-offset-2 hover:text-emerald-800 dark:text-emerald-400"
+            >
+              {GASOLINE_EQUIVALENCE_SOURCE.name}
+            </a>
+            .
+          </p>
+        </div>
+
+        <div className="mt-8">
+          <h3 className="text-base font-semibold">Miles-driven equivalence</h3>
+          <p className="mt-1 max-w-2xl text-xs text-muted-foreground">{DRIVING_EQUIVALENCE_SOURCE.methodology}</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {DRIVING_CO2_KG_PER_MILE} kg CO₂e / mile. Source:{" "}
+            <a
+              href={DRIVING_EQUIVALENCE_SOURCE.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 underline underline-offset-2 hover:text-emerald-800 dark:text-emerald-400"
+            >
+              {DRIVING_EQUIVALENCE_SOURCE.name}
+            </a>
+            .
+          </p>
+        </div>
+
+        <div className="mt-8">
+          <h3 className="text-base font-semibold">Home electricity equivalence</h3>
+          <p className="mt-1 max-w-2xl text-xs text-muted-foreground">{HOME_ELECTRICITY_EQUIVALENCE_SOURCE.methodology}</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {HOME_ELECTRICITY_CO2_KG_PER_YEAR.toLocaleString()} kg CO₂ / home / year. Source:{" "}
+            <a
+              href={HOME_ELECTRICITY_EQUIVALENCE_SOURCE.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 underline underline-offset-2 hover:text-emerald-800 dark:text-emerald-400"
+            >
+              {HOME_ELECTRICITY_EQUIVALENCE_SOURCE.name}
+            </a>
+            .
+          </p>
+        </div>
+
+        <div className="mt-8">
+          <h3 className="text-base font-semibold">Electricity generation mix (by country)</h3>
+          <p className="mt-1 max-w-2xl text-xs text-muted-foreground">
+            The &ldquo;where your electricity comes from&rdquo; chart on the results page, for
+            countries other than the US (or when no US state is selected). Display only &mdash;
+            not used in any kg CO₂e calculation, which relies on the carbon-intensity factors
+            above instead.
+          </p>
+          <div className="mt-3 overflow-x-auto">
+            <table className="w-full min-w-[420px] border-collapse text-sm">
+              <thead>
+                <tr className="border-b border-border text-left text-muted-foreground">
+                  <th scope="col" className="py-2 pr-4 font-medium">Country</th>
+                  <th scope="col" className="py-2 pr-4 font-medium">Fossil</th>
+                  <th scope="col" className="py-2 pr-4 font-medium">Nuclear</th>
+                  <th scope="col" className="py-2 font-medium">Renewables</th>
+                </tr>
+              </thead>
+              <tbody>
+                {COUNTRY_ELECTRICITY_MIX.map((m) => (
+                  <tr key={m.countryCode} className="border-b border-border/60">
+                    <td className="py-2 pr-4">{m.label}</td>
+                    <td className="py-2 pr-4 tabular-nums">{m.mixPercent.fossil}%</td>
+                    <td className="py-2 pr-4 tabular-nums">{m.mixPercent.nuclear}%</td>
+                    <td className="py-2 tabular-nums">{m.mixPercent.renewables}%</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Source:{" "}
+            <a
+              href={COUNTRY_MIX_SOURCE.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 underline underline-offset-2 hover:text-emerald-800 dark:text-emerald-400"
+            >
+              {COUNTRY_MIX_SOURCE.name}
+            </a>
+            , {COUNTRY_ELECTRICITY_MIX[0]?.year}.
           </p>
         </div>
       </section>

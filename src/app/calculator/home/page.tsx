@@ -1,57 +1,32 @@
 "use client";
 
+import Link from "next/link";
 import { useProfile } from "@/components/profile-provider";
 import { CalculatorShell } from "@/components/calculator/calculator-shell";
 import { QuantityQuestion } from "@/components/calculator/quantity-question";
-import { calculateHome, emissionFactors, ELECTRICITY_REGIONS } from "@/climate";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { calculateHome, emissionFactors, ELECTRICITY_REGIONS, usStateElectricity } from "@/climate";
 
 export default function HomeCalculatorPage() {
   const { profile, updateCategory } = useProfile();
   const result = calculateHome(profile.home, emissionFactors);
 
+  const countryCode = profile.home.countryCode ?? "US";
+  const country = ELECTRICITY_REGIONS.find((r) => r.code === countryCode);
+  const state = countryCode === "US" ? usStateElectricity(profile.home.usStateCode) : undefined;
+  const regionLabel = state ? `${state.name}, United States` : (country?.label ?? "United States");
+
   return (
     <CalculatorShell
       path="/calculator/home"
-      subtitle="Electricity grid carbon intensity varies a lot by country (and by state/region within a country). Pick where you live for a closer estimate; see the methodology page for details and sources."
+      subtitle="Electricity grid carbon intensity varies a lot by location. We're using the electricity factor for the region you picked earlier."
       categoryKgCo2ePerYear={result.kgCo2ePerYear}
     >
-      <div className="space-y-3">
-        <div>
-          <h3 className="text-lg font-medium">Where do you live?</h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Changes the electricity grid factor used below. Other categories still use general
-            averages.
-          </p>
-        </div>
-        <div className="max-w-xs">
-          <Label htmlFor="home-country" className="sr-only">
-            Country
-          </Label>
-          <Select
-            value={profile.home.countryCode ?? "US"}
-            onValueChange={(v) => updateCategory("home", { countryCode: v })}
-          >
-            <SelectTrigger id="home-country" className="w-full">
-              <SelectValue placeholder="Select a country" />
-            </SelectTrigger>
-            <SelectContent>
-              {ELECTRICITY_REGIONS.map((region) => (
-                <SelectItem key={region.code} value={region.code}>
-                  {region.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
+      <p className="-mt-4 text-sm text-muted-foreground">
+        Using electricity data for <span className="font-medium text-foreground">{regionLabel}</span>.{" "}
+        <Link href="/calculator/region" className="underline underline-offset-2 hover:text-foreground">
+          Change
+        </Link>
+      </p>
 
       <QuantityQuestion
         question="How much electricity do you use?"

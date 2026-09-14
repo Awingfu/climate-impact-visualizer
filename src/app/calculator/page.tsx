@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Car, Plane, Home as HomeIcon, Utensils, Shirt } from "lucide-react";
+import { ArrowRight, MapPin, Car, Plane, Home as HomeIcon, Utensils, Shirt } from "lucide-react";
 import { useProfile } from "@/components/profile-provider";
 import { Button } from "@/components/ui/button";
 import { CATEGORY_STEPS } from "@/components/calculator/category-config";
@@ -12,6 +12,8 @@ import {
   calculateFood,
   calculateShopping,
   emissionFactors,
+  ELECTRICITY_REGIONS,
+  usStateElectricity,
 } from "@/climate";
 import { formatCo2e } from "@/lib/format";
 
@@ -21,13 +23,18 @@ export default function CalculatorOverviewPage() {
   const { profile } = useProfile();
 
   const results = {
-    transportation: calculateTransportation(profile.transportation, emissionFactors, profile.home.countryCode),
+    transportation: calculateTransportation(profile.transportation, emissionFactors, profile.home),
     flights: calculateFlights(profile.flights, emissionFactors),
     home: calculateHome(profile.home, emissionFactors),
     food: calculateFood(profile.food, emissionFactors),
     shopping: calculateShopping(profile.shopping, emissionFactors),
   };
   const total = Object.values(results).reduce((sum, r) => sum + r.kgCo2ePerYear, 0);
+
+  const countryCode = profile.home.countryCode ?? "US";
+  const country = ELECTRICITY_REGIONS.find((r) => r.code === countryCode);
+  const state = countryCode === "US" ? usStateElectricity(profile.home.usStateCode) : undefined;
+  const regionLabel = state ? state.name : (country?.label ?? "United States");
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
@@ -43,6 +50,23 @@ export default function CalculatorOverviewPage() {
       </div>
 
       <ul className="mt-8 space-y-3">
+        <li>
+          <Link
+            href="/calculator/region"
+            className="flex items-center justify-between gap-4 rounded-xl border border-border p-4 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <span className="flex items-center gap-3">
+              <span className="flex size-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400">
+                <MapPin className="size-5" aria-hidden="true" />
+              </span>
+              <span className="font-medium">Your region</span>
+            </span>
+            <span className="flex items-center gap-2 text-sm text-muted-foreground">
+              {regionLabel}
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </span>
+          </Link>
+        </li>
         {CATEGORY_STEPS.map((step) => {
           const Icon = ICONS[step.icon as keyof typeof ICONS];
           const result = results[step.category];
@@ -70,8 +94,8 @@ export default function CalculatorOverviewPage() {
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <Button asChild size="lg">
-          <Link href={CATEGORY_STEPS[0].path}>
-            Start with transportation <ArrowRight data-icon="inline-end" />
+          <Link href="/calculator/region">
+            Start with your region <ArrowRight data-icon="inline-end" />
           </Link>
         </Button>
         <Button asChild variant="outline" size="lg">

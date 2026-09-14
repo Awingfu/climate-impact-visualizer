@@ -1,0 +1,563 @@
+[
+  {
+    "code": "AL",
+    "name": "Alabama",
+    "co2eKgPerKwh": 0.3239,
+    "mixPercent": {
+      "fossil": 57.9,
+      "nuclear": 32.9,
+      "renewables": 9.3,
+      "other": 0
+    }
+  },
+  {
+    "code": "AK",
+    "name": "Alaska",
+    "co2eKgPerKwh": 0.3694,
+    "mixPercent": {
+      "fossil": 71.2,
+      "nuclear": 0,
+      "renewables": 28.8,
+      "other": 0
+    }
+  },
+  {
+    "code": "AZ",
+    "name": "Arizona",
+    "co2eKgPerKwh": 0.3126,
+    "mixPercent": {
+      "fossil": 58.0,
+      "nuclear": 28.2,
+      "renewables": 13.8,
+      "other": 0
+    }
+  },
+  {
+    "code": "AR",
+    "name": "Arkansas",
+    "co2eKgPerKwh": 0.4529,
+    "mixPercent": {
+      "fossil": 68.7,
+      "nuclear": 23.7,
+      "renewables": 7.7,
+      "other": 0
+    }
+  },
+  {
+    "code": "CA",
+    "name": "California",
+    "co2eKgPerKwh": 0.1791,
+    "mixPercent": {
+      "fossil": 44.5,
+      "nuclear": 8.2,
+      "renewables": 47.6,
+      "other": 0
+    }
+  },
+  {
+    "code": "CO",
+    "name": "Colorado",
+    "co2eKgPerKwh": 0.4949,
+    "mixPercent": {
+      "fossil": 62.7,
+      "nuclear": 0,
+      "renewables": 37.3,
+      "other": 0
+    }
+  },
+  {
+    "code": "CT",
+    "name": "Connecticut",
+    "co2eKgPerKwh": 0.2452,
+    "mixPercent": {
+      "fossil": 62.8,
+      "nuclear": 33.6,
+      "renewables": 3.7,
+      "other": 0
+    }
+  },
+  {
+    "code": "DE",
+    "name": "Delaware",
+    "co2eKgPerKwh": 0.3194,
+    "mixPercent": {
+      "fossil": 95.4,
+      "nuclear": 0,
+      "renewables": 4.8,
+      "other": 0
+    }
+  },
+  {
+    "code": "DC",
+    "name": "District of Columbia",
+    "co2eKgPerKwh": 0.1792,
+    "mixPercent": {
+      "fossil": 51.9,
+      "nuclear": 0,
+      "renewables": 48.1,
+      "other": 0
+    }
+  },
+  {
+    "code": "FL",
+    "name": "Florida",
+    "co2eKgPerKwh": 0.3579,
+    "mixPercent": {
+      "fossil": 81.4,
+      "nuclear": 11.6,
+      "renewables": 6.7,
+      "other": 0.4
+    }
+  },
+  {
+    "code": "GA",
+    "name": "Georgia",
+    "co2eKgPerKwh": 0.3254,
+    "mixPercent": {
+      "fossil": 59.8,
+      "nuclear": 28.9,
+      "renewables": 11.3,
+      "other": 0
+    }
+  },
+  {
+    "code": "HI",
+    "name": "Hawaii",
+    "co2eKgPerKwh": 0.6326,
+    "mixPercent": {
+      "fossil": 80.1,
+      "nuclear": 0,
+      "renewables": 19.8,
+      "other": 0
+    }
+  },
+  {
+    "code": "ID",
+    "name": "Idaho",
+    "co2eKgPerKwh": 0.1424,
+    "mixPercent": {
+      "fossil": 31.9,
+      "nuclear": 0,
+      "renewables": 67.8,
+      "other": 0.4
+    }
+  },
+  {
+    "code": "IL",
+    "name": "Illinois",
+    "co2eKgPerKwh": 0.2152,
+    "mixPercent": {
+      "fossil": 31.4,
+      "nuclear": 54.9,
+      "renewables": 13.6,
+      "other": 0.1
+    }
+  },
+  {
+    "code": "IN",
+    "name": "Indiana",
+    "co2eKgPerKwh": 0.6647,
+    "mixPercent": {
+      "fossil": 86.8,
+      "nuclear": 0,
+      "renewables": 12.6,
+      "other": 0.5
+    }
+  },
+  {
+    "code": "IA",
+    "name": "Iowa",
+    "co2eKgPerKwh": 0.2876,
+    "mixPercent": {
+      "fossil": 38.3,
+      "nuclear": 0,
+      "renewables": 61.7,
+      "other": 0
+    }
+  },
+  {
+    "code": "KS",
+    "name": "Kansas",
+    "co2eKgPerKwh": 0.3326,
+    "mixPercent": {
+      "fossil": 35.5,
+      "nuclear": 17.6,
+      "renewables": 46.9,
+      "other": 0
+    }
+  },
+  {
+    "code": "KY",
+    "name": "Kentucky",
+    "co2eKgPerKwh": 0.7924,
+    "mixPercent": {
+      "fossil": 92.7,
+      "nuclear": 0,
+      "renewables": 7.2,
+      "other": 0
+    }
+  },
+  {
+    "code": "LA",
+    "name": "Louisiana",
+    "co2eKgPerKwh": 0.3461,
+    "mixPercent": {
+      "fossil": 84.0,
+      "nuclear": 12.5,
+      "renewables": 3.0,
+      "other": 0.5
+    }
+  },
+  {
+    "code": "ME",
+    "name": "Maine",
+    "co2eKgPerKwh": 0.1437,
+    "mixPercent": {
+      "fossil": 34.0,
+      "nuclear": 0,
+      "renewables": 65.2,
+      "other": 0.8
+    }
+  },
+  {
+    "code": "MD",
+    "name": "Maryland",
+    "co2eKgPerKwh": 0.2369,
+    "mixPercent": {
+      "fossil": 48.4,
+      "nuclear": 41.6,
+      "renewables": 9.9,
+      "other": 0
+    }
+  },
+  {
+    "code": "MA",
+    "name": "Massachusetts",
+    "co2eKgPerKwh": 0.3765,
+    "mixPercent": {
+      "fossil": 80.4,
+      "nuclear": 0,
+      "renewables": 19.6,
+      "other": 0
+    }
+  },
+  {
+    "code": "MI",
+    "name": "Michigan",
+    "co2eKgPerKwh": 0.3617,
+    "mixPercent": {
+      "fossil": 66.7,
+      "nuclear": 23.2,
+      "renewables": 10.2,
+      "other": 0
+    }
+  },
+  {
+    "code": "MN",
+    "name": "Minnesota",
+    "co2eKgPerKwh": 0.3413,
+    "mixPercent": {
+      "fossil": 46.9,
+      "nuclear": 20.8,
+      "renewables": 32.0,
+      "other": 0.1
+    }
+  },
+  {
+    "code": "MS",
+    "name": "Mississippi",
+    "co2eKgPerKwh": 0.3757,
+    "mixPercent": {
+      "fossil": 81.1,
+      "nuclear": 16.1,
+      "renewables": 2.7,
+      "other": 0
+    }
+  },
+  {
+    "code": "MO",
+    "name": "Missouri",
+    "co2eKgPerKwh": 0.6598,
+    "mixPercent": {
+      "fossil": 74.6,
+      "nuclear": 13.8,
+      "renewables": 11.7,
+      "other": 0
+    }
+  },
+  {
+    "code": "MT",
+    "name": "Montana",
+    "co2eKgPerKwh": 0.4826,
+    "mixPercent": {
+      "fossil": 48.5,
+      "nuclear": 0,
+      "renewables": 50.6,
+      "other": 0.8
+    }
+  },
+  {
+    "code": "NE",
+    "name": "Nebraska",
+    "co2eKgPerKwh": 0.4653,
+    "mixPercent": {
+      "fossil": 49.1,
+      "nuclear": 17.6,
+      "renewables": 33.3,
+      "other": 0
+    }
+  },
+  {
+    "code": "NV",
+    "name": "Nevada",
+    "co2eKgPerKwh": 0.292,
+    "mixPercent": {
+      "fossil": 63.2,
+      "nuclear": 0,
+      "renewables": 36.7,
+      "other": 0
+    }
+  },
+  {
+    "code": "NH",
+    "name": "New Hampshire",
+    "co2eKgPerKwh": 0.1253,
+    "mixPercent": {
+      "fossil": 26.8,
+      "nuclear": 56.7,
+      "renewables": 16.5,
+      "other": 0
+    }
+  },
+  {
+    "code": "NJ",
+    "name": "New Jersey",
+    "co2eKgPerKwh": 0.2133,
+    "mixPercent": {
+      "fossil": 52.7,
+      "nuclear": 44.1,
+      "renewables": 3.4,
+      "other": 0
+    }
+  },
+  {
+    "code": "NM",
+    "name": "New Mexico",
+    "co2eKgPerKwh": 0.3509,
+    "mixPercent": {
+      "fossil": 55.0,
+      "nuclear": 0,
+      "renewables": 45.0,
+      "other": 0
+    }
+  },
+  {
+    "code": "NY",
+    "name": "New York",
+    "co2eKgPerKwh": 0.2117,
+    "mixPercent": {
+      "fossil": 48.0,
+      "nuclear": 22.3,
+      "renewables": 29.7,
+      "other": 0
+    }
+  },
+  {
+    "code": "NC",
+    "name": "North Carolina",
+    "co2eKgPerKwh": 0.2841,
+    "mixPercent": {
+      "fossil": 52.2,
+      "nuclear": 33.5,
+      "renewables": 14.0,
+      "other": 0.2
+    }
+  },
+  {
+    "code": "ND",
+    "name": "North Dakota",
+    "co2eKgPerKwh": 0.5887,
+    "mixPercent": {
+      "fossil": 60.4,
+      "nuclear": 0,
+      "renewables": 39.4,
+      "other": 0.1
+    }
+  },
+  {
+    "code": "OH",
+    "name": "Ohio",
+    "co2eKgPerKwh": 0.4846,
+    "mixPercent": {
+      "fossil": 84.1,
+      "nuclear": 12.2,
+      "renewables": 3.7,
+      "other": 0
+    }
+  },
+  {
+    "code": "OK",
+    "name": "Oklahoma",
+    "co2eKgPerKwh": 0.2943,
+    "mixPercent": {
+      "fossil": 56.3,
+      "nuclear": 0,
+      "renewables": 43.6,
+      "other": 0
+    }
+  },
+  {
+    "code": "OR",
+    "name": "Oregon",
+    "co2eKgPerKwh": 0.1655,
+    "mixPercent": {
+      "fossil": 37.9,
+      "nuclear": 0,
+      "renewables": 62.1,
+      "other": 0
+    }
+  },
+  {
+    "code": "PA",
+    "name": "Pennsylvania",
+    "co2eKgPerKwh": 0.2939,
+    "mixPercent": {
+      "fossil": 65.0,
+      "nuclear": 31.9,
+      "renewables": 2.9,
+      "other": 0
+    }
+  },
+  {
+    "code": "RI",
+    "name": "Rhode Island",
+    "co2eKgPerKwh": 0.381,
+    "mixPercent": {
+      "fossil": 91.9,
+      "nuclear": 0,
+      "renewables": 8.1,
+      "other": 0
+    }
+  },
+  {
+    "code": "SC",
+    "name": "South Carolina",
+    "co2eKgPerKwh": 0.2542,
+    "mixPercent": {
+      "fossil": 38.6,
+      "nuclear": 55.2,
+      "renewables": 6.1,
+      "other": 0
+    }
+  },
+  {
+    "code": "SD",
+    "name": "South Dakota",
+    "co2eKgPerKwh": 0.1522,
+    "mixPercent": {
+      "fossil": 21.3,
+      "nuclear": 0,
+      "renewables": 78.8,
+      "other": 0
+    }
+  },
+  {
+    "code": "TN",
+    "name": "Tennessee",
+    "co2eKgPerKwh": 0.2999,
+    "mixPercent": {
+      "fossil": 39.7,
+      "nuclear": 48.8,
+      "renewables": 11.4,
+      "other": 0
+    }
+  },
+  {
+    "code": "TX",
+    "name": "Texas",
+    "co2eKgPerKwh": 0.3498,
+    "mixPercent": {
+      "fossil": 65.1,
+      "nuclear": 7.5,
+      "renewables": 27.3,
+      "other": 0
+    }
+  },
+  {
+    "code": "UT",
+    "name": "Utah",
+    "co2eKgPerKwh": 0.6447,
+    "mixPercent": {
+      "fossil": 81.6,
+      "nuclear": 0,
+      "renewables": 18.1,
+      "other": 0.3
+    }
+  },
+  {
+    "code": "VT",
+    "name": "Vermont",
+    "co2eKgPerKwh": 0.0237,
+    "mixPercent": {
+      "fossil": 0.2,
+      "nuclear": 0,
+      "renewables": 99.8,
+      "other": 0.1
+    }
+  },
+  {
+    "code": "VA",
+    "name": "Virginia",
+    "co2eKgPerKwh": 0.2448,
+    "mixPercent": {
+      "fossil": 57.8,
+      "nuclear": 32.6,
+      "renewables": 9.7,
+      "other": 0
+    }
+  },
+  {
+    "code": "WA",
+    "name": "Washington",
+    "co2eKgPerKwh": 0.1209,
+    "mixPercent": {
+      "fossil": 23.2,
+      "nuclear": 8.2,
+      "renewables": 68.6,
+      "other": 0
+    }
+  },
+  {
+    "code": "WV",
+    "name": "West Virginia",
+    "co2eKgPerKwh": 0.8931,
+    "mixPercent": {
+      "fossil": 93.1,
+      "nuclear": 0,
+      "renewables": 6.9,
+      "other": 0
+    }
+  },
+  {
+    "code": "WI",
+    "name": "Wisconsin",
+    "co2eKgPerKwh": 0.5278,
+    "mixPercent": {
+      "fossil": 75.0,
+      "nuclear": 15.5,
+      "renewables": 9.5,
+      "other": 0
+    }
+  },
+  {
+    "code": "WY",
+    "name": "Wyoming",
+    "co2eKgPerKwh": 0.8316,
+    "mixPercent": {
+      "fossil": 77.2,
+      "nuclear": 0,
+      "renewables": 22.5,
+      "other": 0.2
+    }
+  }
+]

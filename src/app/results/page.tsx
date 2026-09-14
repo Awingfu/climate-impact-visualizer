@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, RotateCcw, TreePine } from "lucide-react";
+import { ArrowRight, RotateCcw } from "lucide-react";
 import { useProfile } from "@/components/profile-provider";
 import {
   calculateTotalFootprint,
@@ -9,12 +9,14 @@ import {
   ELECTRICITY_REGIONS,
   perCapitaBenchmarkForCountry,
   worldPerCapitaBenchmark,
-  treesToOffset,
   PER_CAPITA_SOURCE,
+  electricityMixFor,
 } from "@/climate";
 import { CategoryBarChart } from "@/components/charts/category-bar-chart";
 import { PerCapitaComparison } from "@/components/charts/per-capita-comparison";
+import { EnergyMixBar } from "@/components/charts/energy-mix-bar";
 import { Opportunities } from "@/components/results/opportunities";
+import { ForScale } from "@/components/results/for-scale";
 import { Button } from "@/components/ui/button";
 import { categoryConfig } from "@/components/calculator/category-config";
 import { formatTonnes, formatPercent } from "@/lib/format";
@@ -30,7 +32,7 @@ export default function ResultsPage() {
   const countryBenchmark = perCapitaBenchmarkForCountry(countryCode);
   const worldBenchmark = worldPerCapitaBenchmark();
   const countryIsWorld = countryCode === "OTHER" || countryBenchmark.countryCode === worldBenchmark.countryCode;
-  const trees = Math.round(treesToOffset(footprint.totalKgCo2ePerYear));
+  const electricityMix = electricityMixFor(profile.home);
 
   if (!hasAnyData) {
     return (
@@ -58,13 +60,6 @@ export default function ResultsPage() {
           {formatTonnes(footprint.totalKgCo2ePerYear)}
         </p>
         <p className="text-lg text-muted-foreground">tonnes CO₂e / year</p>
-        {trees > 0 && (
-          <p className="mt-2 flex items-center justify-center gap-1.5 text-sm text-muted-foreground">
-            <TreePine className="size-4 shrink-0" aria-hidden="true" />
-            That&apos;s roughly what {trees.toLocaleString()} tree seedlings would absorb in a year, for scale
-            (see <Link href="/methodology" className="underline underline-offset-2 hover:text-foreground">methodology</Link>).
-          </p>
-        )}
         {footprint.largestCategory && (
           <p className="mt-3 text-sm text-muted-foreground">
             Your biggest source is{" "}
@@ -74,6 +69,29 @@ export default function ResultsPage() {
             at {formatPercent(footprint.categoryPercentages[footprint.largestCategory.category])} of your total.
           </p>
         )}
+      </div>
+
+      <div className="mt-10 rounded-2xl border border-border bg-card p-4 sm:p-6">
+        <h2 className="text-sm font-semibold text-muted-foreground">Put another way</h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Your carbon footprint is equivalent to any one of these on its own, not all of them added
+          together:
+        </p>
+        <div className="mt-4">
+          <ForScale kgCo2ePerYear={footprint.totalKgCo2ePerYear} />
+        </div>
+        <p className="mt-4 text-xs text-muted-foreground">
+          Rough equivalents for scale, not real offsets. Source:{" "}
+          <a
+            href="https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator-calculations-and-references"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            US EPA Greenhouse Gas Equivalencies Calculator
+          </a>
+          ; see <Link href="/methodology" className="underline underline-offset-2 hover:text-foreground">methodology</Link> for each factor.
+        </p>
       </div>
 
       <div className="mt-10 rounded-2xl border border-border bg-card p-4 sm:p-6">
@@ -93,6 +111,28 @@ export default function ResultsPage() {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="mt-10 rounded-2xl border border-border bg-card p-4 sm:p-6">
+        <h2 className="text-sm font-semibold text-muted-foreground">
+          Where {electricityMix.label}&apos;s electricity comes from
+        </h2>
+        <div className="mt-4">
+          <EnergyMixBar mixPercent={electricityMix.mixPercent} />
+        </div>
+        <p className="mt-4 text-xs text-muted-foreground">
+          The generation mix behind the electricity factor used in your home energy (and EV
+          charging, if applicable) estimate. Source:{" "}
+          <a
+            href={electricityMix.source.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            {electricityMix.source.name}
+          </a>
+          .
+        </p>
       </div>
 
       <div className="mt-10 rounded-2xl border border-border bg-card p-4 sm:p-6">

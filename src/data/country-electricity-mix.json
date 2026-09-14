@@ -1,0 +1,162 @@
+[
+  {
+    "countryCode": "US",
+    "label": "United States",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 57.0,
+      "nuclear": 17.4,
+      "renewables": 25.6
+    }
+  },
+  {
+    "countryCode": "GB",
+    "label": "United Kingdom",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 35.6,
+      "nuclear": 12.4,
+      "renewables": 52.0
+    }
+  },
+  {
+    "countryCode": "DE",
+    "label": "Germany",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 40.9,
+      "nuclear": 0.0,
+      "renewables": 59.1
+    }
+  },
+  {
+    "countryCode": "FR",
+    "label": "France",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 5.1,
+      "nuclear": 68.8,
+      "renewables": 26.1
+    }
+  },
+  {
+    "countryCode": "CA",
+    "label": "Canada",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 23.0,
+      "nuclear": 13.1,
+      "renewables": 63.9
+    }
+  },
+  {
+    "countryCode": "CN",
+    "label": "China",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 58.3,
+      "nuclear": 4.6,
+      "renewables": 37.0
+    }
+  },
+  {
+    "countryCode": "IN",
+    "label": "India",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 73.3,
+      "nuclear": 2.6,
+      "renewables": 24.1
+    }
+  },
+  {
+    "countryCode": "JP",
+    "label": "Japan",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 67.3,
+      "nuclear": 9.1,
+      "renewables": 23.6
+    }
+  },
+  {
+    "countryCode": "AU",
+    "label": "Australia",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 61.4,
+      "nuclear": 0.0,
+      "renewables": 38.6
+    }
+  },
+  {
+    "countryCode": "BR",
+    "label": "Brazil",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 11.3,
+      "nuclear": 2.1,
+      "renewables": 86.6
+    }
+  },
+  {
+    "countryCode": "KR",
+    "label": "South Korea",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 60.0,
+      "nuclear": 29.6,
+      "renewables": 10.4
+    }
+  },
+  {
+    "countryCode": "MX",
+    "label": "Mexico",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 74.1,
+      "nuclear": 2.8,
+      "renewables": 23.1
+    }
+  },
+  {
+    "countryCode": "ES",
+    "label": "Spain",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 25.4,
+      "nuclear": 18.8,
+      "renewables": 55.9
+    }
+  },
+  {
+    "countryCode": "IT",
+    "label": "Italy",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 51.2,
+      "nuclear": 0.0,
+      "renewables": 48.8
+    }
+  },
+  {
+    "countryCode": "ZA",
+    "label": "South Africa",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 82.2,
+      "nuclear": 4.2,
+      "renewables": 13.6
+    }
+  },
+  {
+    "countryCode": "WORLD",
+    "label": "World",
+    "year": 2025,
+    "mixPercent": {
+      "fossil": 57.4,
+      "nuclear": 8.8,
+      "renewables": 33.8
+    }
+  }
+]

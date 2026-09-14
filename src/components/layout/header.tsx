@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "cn";
 import { Leaf } from "lucide-react";
+import { ThemeToggle } from "./theme-toggle";
 
 const NAV_LINKS = [
   { href: "/calculator", label: "Calculator" },
@@ -22,24 +23,27 @@ export function Header() {
           <Leaf className="size-5 text-emerald-600" aria-hidden="true" />
           <span className="sr-only sm:not-sr-only">Climate Impact Visualizer</span>
         </Link>
-        <nav aria-label="Main navigation" className="flex items-center gap-0.5 text-xs sm:gap-1 sm:text-sm">
-          {NAV_LINKS.map((link) => {
-            const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={isActive ? "page" : undefined}
-                className={cn(
-                  "rounded-md px-1.5 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3",
-                  isActive && "bg-muted font-medium text-foreground"
-                )}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <nav aria-label="Main navigation" className="flex items-center gap-0.5 text-xs sm:gap-1 sm:text-sm">
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={cn(
+                    "rounded-md px-1.5 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3",
+                    isActive && "bg-muted font-medium text-foreground"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

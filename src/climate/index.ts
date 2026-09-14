@@ -22,7 +22,17 @@ export { calculateHome } from "./calculations/home";
 export { calculateFood } from "./calculations/food";
 export { calculateShopping } from "./calculations/shopping";
 export { ASSUMED_ROUND_TRIP_KM } from "./calculations/flights";
-export { ELECTRICITY_REGIONS, DEFAULT_ELECTRICITY_REGION_CODE } from "./geography";
+export {
+  ELECTRICITY_REGIONS,
+  DEFAULT_ELECTRICITY_REGION_CODE,
+  US_STATES,
+  US_STATE_SOURCE,
+  usStateElectricity,
+  COUNTRY_ELECTRICITY_MIX,
+  COUNTRY_MIX_SOURCE,
+  electricityMixFor,
+} from "./geography";
+export type { ElectricityRegion, UsStateElectricity, CountryElectricityMix } from "./geography";
 export {
   PER_CAPITA_BENCHMARKS,
   PER_CAPITA_SOURCE,
@@ -31,6 +41,15 @@ export {
   TREE_CO2_KG_PER_YEAR,
   TREE_EQUIVALENCE_SOURCE,
   treesToOffset,
+  GASOLINE_CO2_KG_PER_GALLON,
+  GASOLINE_EQUIVALENCE_SOURCE,
+  gallonsOfGasolineFor,
+  DRIVING_CO2_KG_PER_MILE,
+  DRIVING_EQUIVALENCE_SOURCE,
+  milesDrivenFor,
+  HOME_ELECTRICITY_CO2_KG_PER_YEAR,
+  HOME_ELECTRICITY_EQUIVALENCE_SOURCE,
+  homeElectricityYearsFor,
 } from "./benchmarks";
 export type { PerCapitaBenchmark } from "./benchmarks";
 
@@ -70,7 +89,7 @@ export function calculateTotalFootprint(
   factors: EmissionFactors = emissionFactors
 ): TotalFootprintResult {
   const categories: EmissionResult[] = [
-    calculateTransportation(profile.transportation, factors, profile.home.countryCode),
+    calculateTransportation(profile.transportation, factors, profile.home),
     calculateFlights(profile.flights, factors),
     calculateHome(profile.home, factors),
     calculateFood(profile.food, factors),

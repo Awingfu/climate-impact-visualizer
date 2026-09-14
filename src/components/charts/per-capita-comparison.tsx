@@ -37,7 +37,7 @@ export function PerCapitaComparison({
           <span className="w-32 shrink-0 text-sm text-muted-foreground sm:w-36">{row.label}</span>
           <div className="h-6 min-w-0 flex-1">
             <div
-              className={`h-full rounded-[4px] ${row.emphasis ? "bg-emerald-600" : "bg-muted-foreground/30"}`}
+              className={`h-full rounded-[4px] ${row.emphasis ? "bg-emerald-600" : "bg-muted-foreground/30 dark:bg-muted-foreground/45"}`}
               style={{ width: `${Math.max((row.tonnes / max) * 100, 3)}%` }}
             />
           </div>

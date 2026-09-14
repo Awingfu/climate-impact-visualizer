@@ -33,6 +33,22 @@ export function categoryConfig(category: Category): CategoryConfig {
   return CATEGORY_STEPS.find((c) => c.category === category)!;
 }
 
+/** A step in the calculator wizard: the region step first, then one per emission category. */
+export type WizardStep = {
+  path: string;
+  title: string;
+  icon: string;
+};
+
+export const WIZARD_STEPS: WizardStep[] = [
+  { path: "/calculator/region", title: "Your region", icon: "map-pin" },
+  ...CATEGORY_STEPS.map(({ path, title, icon }) => ({ path, title, icon })),
+];
+
+export function wizardStepIndex(path: string): number {
+  return WIZARD_STEPS.findIndex((s) => s.path === path);
+}
+
 export function stepIndex(path: string): number {
   return CATEGORY_STEPS.findIndex((s) => s.path === path);
 }

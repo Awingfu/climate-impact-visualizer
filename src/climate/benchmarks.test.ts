@@ -4,6 +4,12 @@ import {
   worldPerCapitaBenchmark,
   treesToOffset,
   TREE_CO2_KG_PER_YEAR,
+  gallonsOfGasolineFor,
+  GASOLINE_CO2_KG_PER_GALLON,
+  milesDrivenFor,
+  DRIVING_CO2_KG_PER_MILE,
+  homeElectricityYearsFor,
+  HOME_ELECTRICITY_CO2_KG_PER_YEAR,
 } from "./benchmarks";
 
 describe("perCapitaBenchmarkForCountry", () => {
@@ -35,5 +41,35 @@ describe("treesToOffset", () => {
 
   it("returns zero for zero emissions", () => {
     expect(treesToOffset(0)).toBe(0);
+  });
+});
+
+describe("gallonsOfGasolineFor", () => {
+  it("divides kg CO2 by the per-gallon rate", () => {
+    expect(gallonsOfGasolineFor(GASOLINE_CO2_KG_PER_GALLON * 5)).toBeCloseTo(5);
+  });
+
+  it("never returns a negative amount", () => {
+    expect(gallonsOfGasolineFor(-100)).toBe(0);
+  });
+});
+
+describe("milesDrivenFor", () => {
+  it("divides kg CO2e by the per-mile rate", () => {
+    expect(milesDrivenFor(DRIVING_CO2_KG_PER_MILE * 1000)).toBeCloseTo(1000);
+  });
+
+  it("never returns a negative amount", () => {
+    expect(milesDrivenFor(-100)).toBe(0);
+  });
+});
+
+describe("homeElectricityYearsFor", () => {
+  it("divides kg CO2 by the annual per-home rate", () => {
+    expect(homeElectricityYearsFor(HOME_ELECTRICITY_CO2_KG_PER_YEAR * 2)).toBeCloseTo(2);
+  });
+
+  it("never returns a negative amount", () => {
+    expect(homeElectricityYearsFor(-100)).toBe(0);
   });
 });
