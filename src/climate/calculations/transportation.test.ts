@@ -44,6 +44,17 @@ describe("calculateTransportation", () => {
     expect(result.kgCo2ePerYear).toBeCloseTo(500 * 12 * ev.co2ePerUnit * grid.co2ePerUnit);
   });
 
+  it("uses the selected home country's grid factor for EV charging", () => {
+    const result = calculateTransportation(
+      { ...baseProfile, carMilesPerMonth: 500, fuelType: "electric" },
+      emissionFactors,
+      "FR"
+    );
+    const ev = findFactor(emissionFactors.transportation, "ev_efficiency_kwh_per_mile");
+    const grid = findFactor(emissionFactors.home, "electricity_grid_fra");
+    expect(result.kgCo2ePerYear).toBeCloseTo(500 * 12 * ev.co2ePerUnit * grid.co2ePerUnit);
+  });
+
   it("includes public transit emissions separately in the breakdown", () => {
     const result = calculateTransportation(
       { ...baseProfile, publicTransitMilesPerMonth: 100 },

@@ -34,4 +34,22 @@ describe("calculateHome", () => {
     );
     expect(withGas.kgCo2ePerYear).toBeGreaterThan(electricityOnly.kgCo2ePerYear);
   });
+
+  it("uses the selected country's grid factor instead of the US average", () => {
+    const result = calculateHome(
+      { ...baseProfile, electricityKwhPerMonth: 900, countryCode: "FR" },
+      emissionFactors
+    );
+    const factor = findFactor(emissionFactors.home, "electricity_grid_fra");
+    expect(result.kgCo2ePerYear).toBeCloseTo(900 * 12 * factor.co2ePerUnit);
+  });
+
+  it("falls back to the world average factor for an unrecognized country", () => {
+    const result = calculateHome(
+      { ...baseProfile, electricityKwhPerMonth: 900, countryCode: "OTHER" },
+      emissionFactors
+    );
+    const factor = findFactor(emissionFactors.home, "electricity_grid_world");
+    expect(result.kgCo2ePerYear).toBeCloseTo(900 * 12 * factor.co2ePerUnit);
+  });
 });

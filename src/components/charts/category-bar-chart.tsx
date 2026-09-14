@@ -74,9 +74,16 @@ export function CategoryBarChart({ categories, totalKgCo2ePerYear }: CategoryBar
         </ResponsiveContainer>
       </div>
 
-      {/* Accessible data table alternative to the chart above, for screen readers and non-visual access. */}
-      <table className="sr-only">
-        <caption>Estimated annual CO₂e emissions by category</caption>
+      {/*
+        Accessible data table alternative to the chart above, for screen readers and non-visual access.
+        The label lives in a sr-only heading rather than a <caption>: browsers force table-caption
+        boxes to position:static, so a sr-only <caption> renders visibly instead of being clipped,
+        overlapping content below the chart.
+      */}
+      <h3 id="category-breakdown-table-heading" className="sr-only">
+        Estimated annual CO₂e emissions by category
+      </h3>
+      <table className="sr-only" aria-labelledby="category-breakdown-table-heading">
         <thead>
           <tr>
             <th scope="col">Category</th>

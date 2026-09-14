@@ -1,10 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, RotateCcw } from "lucide-react";
+import { ArrowRight, RotateCcw, TreePine } from "lucide-react";
 import { useProfile } from "@/components/profile-provider";
-import { calculateTotalFootprint, getBiggestOpportunities } from "@/climate";
+import {
+  calculateTotalFootprint,
+  getBiggestOpportunities,
+  ELECTRICITY_REGIONS,
+  perCapitaBenchmarkForCountry,
+  worldPerCapitaBenchmark,
+  treesToOffset,
+  PER_CAPITA_SOURCE,
+} from "@/climate";
 import { CategoryBarChart } from "@/components/charts/category-bar-chart";
+import { PerCapitaComparison } from "@/components/charts/per-capita-comparison";
 import { Opportunities } from "@/components/results/opportunities";
 import { Button } from "@/components/ui/button";
 import { categoryConfig } from "@/components/calculator/category-config";
@@ -15,6 +24,13 @@ export default function ResultsPage() {
   const footprint = calculateTotalFootprint(profile);
   const opportunities = getBiggestOpportunities(profile);
   const hasAnyData = footprint.totalKgCo2ePerYear > 0;
+
+  const countryCode = profile.home.countryCode ?? "US";
+  const countryRegion = ELECTRICITY_REGIONS.find((r) => r.code === countryCode);
+  const countryBenchmark = perCapitaBenchmarkForCountry(countryCode);
+  const worldBenchmark = worldPerCapitaBenchmark();
+  const countryIsWorld = countryCode === "OTHER" || countryBenchmark.countryCode === worldBenchmark.countryCode;
+  const trees = Math.round(treesToOffset(footprint.totalKgCo2ePerYear));
 
   if (!hasAnyData) {
     return (
@@ -42,6 +58,13 @@ export default function ResultsPage() {
           {formatTonnes(footprint.totalKgCo2ePerYear)}
         </p>
         <p className="text-lg text-muted-foreground">tonnes CO₂e / year</p>
+        {trees > 0 && (
+          <p className="mt-2 flex items-center justify-center gap-1.5 text-sm text-muted-foreground">
+            <TreePine className="size-4 shrink-0" aria-hidden="true" />
+            That&apos;s roughly what {trees.toLocaleString()} tree seedlings would absorb in a year, for scale
+            (see <Link href="/methodology" className="underline underline-offset-2 hover:text-foreground">methodology</Link>).
+          </p>
+        )}
         {footprint.largestCategory && (
           <p className="mt-3 text-sm text-muted-foreground">
             Your biggest source is{" "}
@@ -70,6 +93,35 @@ export default function ResultsPage() {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="mt-10 rounded-2xl border border-border bg-card p-4 sm:p-6">
+        <h2 className="text-sm font-semibold text-muted-foreground">
+          How you compare{countryRegion && !countryIsWorld ? ` (${countryRegion.label})` : ""}
+        </h2>
+        <div className="mt-4">
+          <PerCapitaComparison
+            yourKgCo2ePerYear={footprint.totalKgCo2ePerYear}
+            countryLabel={countryRegion?.label ?? "Your country"}
+            countryTonnesPerYear={countryBenchmark.tonnesCo2ePerYear}
+            worldTonnesPerYear={worldBenchmark.tonnesCo2ePerYear}
+            countryIsWorld={countryIsWorld}
+          />
+        </div>
+        <p className="mt-4 text-xs text-muted-foreground">
+          Country and world averages cover a person&apos;s total footprint across the whole economy
+          (industry, government, exports, and more), not just the categories in this calculator, so
+          they&apos;re usually much bigger than your number above even for an average lifestyle. Source:{" "}
+          <a
+            href={PER_CAPITA_SOURCE.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            {PER_CAPITA_SOURCE.name}
+          </a>
+          , {countryBenchmark.year}.
+        </p>
       </div>
 
       <div className="mt-10">

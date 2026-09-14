@@ -1,5 +1,6 @@
 import type { ClimateProfile, EmissionFactors, EmissionResult } from "../types";
 import { findFactor } from "../factors";
+import { electricityFactorIdForCountry } from "../geography";
 
 const MONTHS_PER_YEAR = 12;
 
@@ -10,7 +11,7 @@ export function calculateHome(
   const annualKwh = Math.max(0, profile.electricityKwhPerMonth) * MONTHS_PER_YEAR;
   const annualTherms = Math.max(0, profile.naturalGasThermsPerMonth ?? 0) * MONTHS_PER_YEAR;
 
-  const electricityFactor = findFactor(factors.home, "electricity_us_average");
+  const electricityFactor = findFactor(factors.home, electricityFactorIdForCountry(profile.countryCode));
   const gasFactor = findFactor(factors.home, "natural_gas_therm");
 
   const electricityKgCo2e = annualKwh * electricityFactor.co2ePerUnit;

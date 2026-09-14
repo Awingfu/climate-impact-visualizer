@@ -3,6 +3,12 @@ import { emissionFactors } from "@/climate/factors";
 import { categoryConfig } from "@/components/calculator/category-config";
 import { Badge } from "@/components/ui/badge";
 import { ASSUMED_ROUND_TRIP_KM } from "@/climate/calculations/flights";
+import {
+  PER_CAPITA_BENCHMARKS,
+  PER_CAPITA_SOURCE,
+  TREE_CO2_KG_PER_YEAR,
+  TREE_EQUIVALENCE_SOURCE,
+} from "@/climate/benchmarks";
 
 export const metadata: Metadata = {
   title: "Methodology",
@@ -75,9 +81,12 @@ export default function MethodologyPage() {
             available for these.
           </li>
           <li>
-            Electricity uses a single US national-average grid intensity for everyone, even though
-            actual grid carbon intensity varies a lot by state and utility. State-level factors
-            would be a good next addition, but they&apos;re not part of this MVP.
+            Electricity uses a national-average grid intensity for the country you select on the
+            home energy step (US average by default), even though actual grid carbon intensity
+            varies a lot within a country by state, province, or utility. State/region-level
+            factors would be a good next addition, but they&apos;re not part of this MVP. Country
+            selection currently only affects electricity; other categories still use general
+            averages regardless of location.
           </li>
           <li>
             SUV/truck and hybrid factors are derived approximations (see the factor table below),
@@ -154,6 +163,69 @@ export default function MethodologyPage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-xl font-semibold">Comparison benchmarks</h2>
+        <p className="mt-2 text-muted-foreground">
+          The results page compares your total to two reference points, and translates it into a
+          tree-planting equivalent for scale. These aren&apos;t emission factors (nothing is
+          multiplied against your answers) &mdash; they&apos;re fixed reference numbers.
+        </p>
+
+        <div className="mt-6">
+          <h3 className="text-base font-semibold">Per-capita averages</h3>
+          <p className="mt-1 max-w-2xl text-xs text-muted-foreground">{PER_CAPITA_SOURCE.methodology}</p>
+          <div className="mt-3 overflow-x-auto">
+            <table className="w-full min-w-[420px] border-collapse text-sm">
+              <thead>
+                <tr className="border-b border-border text-left text-muted-foreground">
+                  <th scope="col" className="py-2 pr-4 font-medium">Country</th>
+                  <th scope="col" className="py-2 pr-4 font-medium">Tonnes CO₂e / person / year</th>
+                  <th scope="col" className="py-2 font-medium">Year</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PER_CAPITA_BENCHMARKS.map((b) => (
+                  <tr key={b.countryCode} className="border-b border-border/60">
+                    <td className="py-2 pr-4">{b.label}</td>
+                    <td className="py-2 pr-4 tabular-nums">{b.tonnesCo2ePerYear}</td>
+                    <td className="py-2 tabular-nums">{b.year}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Source:{" "}
+            <a
+              href={PER_CAPITA_SOURCE.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 underline underline-offset-2 hover:text-emerald-800 dark:text-emerald-400"
+            >
+              {PER_CAPITA_SOURCE.name}
+            </a>
+            .
+          </p>
+        </div>
+
+        <div className="mt-8">
+          <h3 className="text-base font-semibold">Tree-seedling equivalence</h3>
+          <p className="mt-1 max-w-2xl text-xs text-muted-foreground">{TREE_EQUIVALENCE_SOURCE.methodology}</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {TREE_CO2_KG_PER_YEAR} kg CO₂ / tree / year. Source:{" "}
+            <a
+              href={TREE_EQUIVALENCE_SOURCE.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 underline underline-offset-2 hover:text-emerald-800 dark:text-emerald-400"
+            >
+              {TREE_EQUIVALENCE_SOURCE.name}
+            </a>
+            .
+          </p>
         </div>
       </section>
     </div>

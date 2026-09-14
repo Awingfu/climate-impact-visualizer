@@ -11,7 +11,7 @@
       "name": "US EPA Greenhouse Gas Equivalencies Calculator (eGRID-based national average)",
       "url": "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator-calculations-and-references"
     },
-    "methodology": "EPA's national weighted-average electricity emission rate. This is a US-wide average; actual grid intensity varies significantly by state and utility. Location-specific electricity factors are a planned future enhancement (see /methodology)."
+    "methodology": "EPA's national weighted-average electricity emission rate. This is a US-wide average; actual grid intensity varies significantly by state and utility. Used when no other country is selected in the calculator."
   },
   {
     "id": "natural_gas_therm",
@@ -25,6 +25,216 @@
       "name": "US EPA Greenhouse Gas Equivalencies Calculator",
       "url": "https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator-calculations-and-references"
     },
-    "methodology": "EPA's standard CO2 emission factor for natural gas combustion, converted to a per-therm basis."
+    "methodology": "EPA's standard CO2 emission factor for natural gas combustion, converted to a per-therm basis. Not currently varied by country; see /methodology."
+  },
+  {
+    "id": "electricity_grid_world",
+    "category": "home",
+    "label": "Electricity (world average)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.458,
+    "geography": "World",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation (all sources, fossil and low-carbon), from Ember's Global Electricity Review. Used as the fallback when a user's country isn't in the supported list."
+  },
+  {
+    "id": "electricity_grid_gbr",
+    "category": "home",
+    "label": "Electricity (United Kingdom)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.217,
+    "geography": "GB",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources. Actual intensity varies by region and supplier."
+  },
+  {
+    "id": "electricity_grid_deu",
+    "category": "home",
+    "label": "Electricity (Germany)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.33,
+    "geography": "DE",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources. Actual intensity varies by region and supplier."
+  },
+  {
+    "id": "electricity_grid_fra",
+    "category": "home",
+    "label": "Electricity (France)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.041,
+    "geography": "FR",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources. France's grid is unusually low-carbon due to its large nuclear share."
+  },
+  {
+    "id": "electricity_grid_can",
+    "category": "home",
+    "label": "Electricity (Canada)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.191,
+    "geography": "CA",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources. Varies a lot by province (hydro- and nuclear-heavy provinces are much lower)."
+  },
+  {
+    "id": "electricity_grid_chn",
+    "category": "home",
+    "label": "Electricity (China)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.525,
+    "geography": "CN",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources. Actual intensity varies by province and grid."
+  },
+  {
+    "id": "electricity_grid_ind",
+    "category": "home",
+    "label": "Electricity (India)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.67,
+    "geography": "IN",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources. Actual intensity varies by state and grid."
+  },
+  {
+    "id": "electricity_grid_jpn",
+    "category": "home",
+    "label": "Electricity (Japan)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.477,
+    "geography": "JP",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources."
+  },
+  {
+    "id": "electricity_grid_aus",
+    "category": "home",
+    "label": "Electricity (Australia)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.525,
+    "geography": "AU",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources. Varies a lot by state grid."
+  },
+  {
+    "id": "electricity_grid_bra",
+    "category": "home",
+    "label": "Electricity (Brazil)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.11,
+    "geography": "BR",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources. Brazil's grid is unusually low-carbon due to its large hydropower share."
+  },
+  {
+    "id": "electricity_grid_kor",
+    "category": "home",
+    "label": "Electricity (South Korea)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.417,
+    "geography": "KR",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources."
+  },
+  {
+    "id": "electricity_grid_mex",
+    "category": "home",
+    "label": "Electricity (Mexico)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.474,
+    "geography": "MX",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources."
+  },
+  {
+    "id": "electricity_grid_esp",
+    "category": "home",
+    "label": "Electricity (Spain)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.154,
+    "geography": "ES",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources."
+  },
+  {
+    "id": "electricity_grid_ita",
+    "category": "home",
+    "label": "Electricity (Italy)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.285,
+    "geography": "IT",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources."
+  },
+  {
+    "id": "electricity_grid_zaf",
+    "category": "home",
+    "label": "Electricity (South Africa)",
+    "activityUnit": "kWh",
+    "co2ePerUnit": 0.699,
+    "geography": "ZA",
+    "year": 2025,
+    "source": {
+      "name": "Ember, Global Electricity Review (via Our World in Data)",
+      "url": "https://ourworldindata.org/grapher/carbon-intensity-electricity"
+    },
+    "methodology": "National-average carbon intensity of electricity generation, all sources. South Africa's grid is coal-heavy, giving it a higher-than-average intensity."
   }
 ]

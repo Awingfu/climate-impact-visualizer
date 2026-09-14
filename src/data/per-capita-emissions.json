@@ -1,0 +1,98 @@
+[
+  {
+    "countryCode": "US",
+    "label": "United States",
+    "tonnesCo2ePerYear": 17.53,
+    "year": 2024
+  },
+  {
+    "countryCode": "GB",
+    "label": "United Kingdom",
+    "tonnesCo2ePerYear": 5.64,
+    "year": 2024
+  },
+  {
+    "countryCode": "DE",
+    "label": "Germany",
+    "tonnesCo2ePerYear": 7.8,
+    "year": 2024
+  },
+  {
+    "countryCode": "FR",
+    "label": "France",
+    "tonnesCo2ePerYear": 5.08,
+    "year": 2024
+  },
+  {
+    "countryCode": "CA",
+    "label": "Canada",
+    "tonnesCo2ePerYear": 20.2,
+    "year": 2024
+  },
+  {
+    "countryCode": "CN",
+    "label": "China",
+    "tonnesCo2ePerYear": 9.94,
+    "year": 2024
+  },
+  {
+    "countryCode": "IN",
+    "label": "India",
+    "tonnesCo2ePerYear": 2.94,
+    "year": 2024
+  },
+  {
+    "countryCode": "JP",
+    "label": "Japan",
+    "tonnesCo2ePerYear": 8.14,
+    "year": 2024
+  },
+  {
+    "countryCode": "AU",
+    "label": "Australia",
+    "tonnesCo2ePerYear": 22.83,
+    "year": 2024
+  },
+  {
+    "countryCode": "BR",
+    "label": "Brazil",
+    "tonnesCo2ePerYear": 13.23,
+    "year": 2024
+  },
+  {
+    "countryCode": "KR",
+    "label": "South Korea",
+    "tonnesCo2ePerYear": 12.19,
+    "year": 2024
+  },
+  {
+    "countryCode": "MX",
+    "label": "Mexico",
+    "tonnesCo2ePerYear": 4.86,
+    "year": 2024
+  },
+  {
+    "countryCode": "ES",
+    "label": "Spain",
+    "tonnesCo2ePerYear": 5.74,
+    "year": 2024
+  },
+  {
+    "countryCode": "IT",
+    "label": "Italy",
+    "tonnesCo2ePerYear": 6.0,
+    "year": 2024
+  },
+  {
+    "countryCode": "ZA",
+    "label": "South Africa",
+    "tonnesCo2ePerYear": 8.48,
+    "year": 2024
+  },
+  {
+    "countryCode": "WORLD",
+    "label": "World",
+    "tonnesCo2ePerYear": 6.67,
+    "year": 2024
+  }
+]

@@ -21,12 +21,13 @@ export default function CalculatorOverviewPage() {
   const { profile } = useProfile();
 
   const results = {
-    transportation: calculateTransportation(profile.transportation, emissionFactors),
+    transportation: calculateTransportation(profile.transportation, emissionFactors, profile.home.countryCode),
     flights: calculateFlights(profile.flights, emissionFactors),
     home: calculateHome(profile.home, emissionFactors),
     food: calculateFood(profile.food, emissionFactors),
     shopping: calculateShopping(profile.shopping, emissionFactors),
   };
+  const total = Object.values(results).reduce((sum, r) => sum + r.kgCo2ePerYear, 0);
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
@@ -35,6 +36,11 @@ export default function CalculatorOverviewPage() {
         We&apos;ve started you off with typical US averages for each category. Jump into any of
         them, adjust the answers to match your own life, and watch the estimate update instantly.
       </p>
+
+      <div className="mt-6 flex items-center justify-between rounded-xl border border-border bg-muted/50 px-4 py-3">
+        <span className="text-sm font-medium text-muted-foreground">Running total</span>
+        <span className="text-lg font-semibold tabular-nums">{formatCo2e(total)}/yr</span>
+      </div>
 
       <ul className="mt-8 space-y-3">
         {CATEGORY_STEPS.map((step) => {

@@ -22,6 +22,17 @@ export { calculateHome } from "./calculations/home";
 export { calculateFood } from "./calculations/food";
 export { calculateShopping } from "./calculations/shopping";
 export { ASSUMED_ROUND_TRIP_KM } from "./calculations/flights";
+export { ELECTRICITY_REGIONS, DEFAULT_ELECTRICITY_REGION_CODE } from "./geography";
+export {
+  PER_CAPITA_BENCHMARKS,
+  PER_CAPITA_SOURCE,
+  perCapitaBenchmarkForCountry,
+  worldPerCapitaBenchmark,
+  TREE_CO2_KG_PER_YEAR,
+  TREE_EQUIVALENCE_SOURCE,
+  treesToOffset,
+} from "./benchmarks";
+export type { PerCapitaBenchmark } from "./benchmarks";
 
 /** A reasonable, non-alarming default profile used to seed the calculator. */
 export const defaultProfile: ClimateProfile = {
@@ -38,6 +49,7 @@ export const defaultProfile: ClimateProfile = {
   home: {
     electricityKwhPerMonth: 900,
     naturalGasThermsPerMonth: 40,
+    countryCode: "US",
   },
   food: {
     beefMealsPerWeek: 4,
@@ -58,7 +70,7 @@ export function calculateTotalFootprint(
   factors: EmissionFactors = emissionFactors
 ): TotalFootprintResult {
   const categories: EmissionResult[] = [
-    calculateTransportation(profile.transportation, factors),
+    calculateTransportation(profile.transportation, factors, profile.home.countryCode),
     calculateFlights(profile.flights, factors),
     calculateHome(profile.home, factors),
     calculateFood(profile.food, factors),

@@ -5,6 +5,8 @@ import { ArrowLeft, ArrowRight, Car, Plane, Home as HomeIcon, Utensils, Shirt } 
 import { Button } from "@/components/ui/button";
 import { CATEGORY_STEPS, stepIndex } from "./category-config";
 import { formatCo2e } from "@/lib/format";
+import { useProfile } from "@/components/profile-provider";
+import { calculateTotalFootprint } from "@/climate";
 import { cn } from "cn";
 
 const ICONS = { car: Car, plane: Plane, home: HomeIcon, utensils: Utensils, shirt: Shirt };
@@ -17,11 +19,13 @@ type CalculatorShellProps = {
 };
 
 export function CalculatorShell({ path, subtitle, categoryKgCo2ePerYear, children }: CalculatorShellProps) {
+  const { profile } = useProfile();
   const index = stepIndex(path);
   const step = CATEGORY_STEPS[index];
   const prev = index > 0 ? CATEGORY_STEPS[index - 1] : null;
   const next = index < CATEGORY_STEPS.length - 1 ? CATEGORY_STEPS[index + 1] : null;
   const Icon = ICONS[step.icon as keyof typeof ICONS];
+  const runningTotal = calculateTotalFootprint(profile).totalKgCo2ePerYear;
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
@@ -42,6 +46,15 @@ export function CalculatorShell({ path, subtitle, categoryKgCo2ePerYear, childre
         Step {index + 1} of {CATEGORY_STEPS.length}: {step.title}
       </span>
 
+      <div
+        className="sticky top-14 z-30 -mx-4 mb-6 flex items-center justify-between gap-3 border-b border-border bg-background/95 px-4 py-2.5 backdrop-blur sm:-mx-6 sm:px-6"
+        role="status"
+        aria-live="polite"
+      >
+        <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Running total</span>
+        <span className="text-base font-semibold tabular-nums">{formatCo2e(runningTotal)}/yr</span>
+      </div>
+
       <div className="mb-8 flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <span className="flex size-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400">
@@ -56,7 +69,7 @@ export function CalculatorShell({ path, subtitle, categoryKgCo2ePerYear, childre
         </div>
         {categoryKgCo2ePerYear > 0 && (
           <div className="shrink-0 rounded-xl border border-border bg-muted/50 px-3 py-2 text-right">
-            <p className="text-xs text-muted-foreground">Estimated</p>
+            <p className="text-xs text-muted-foreground">This category</p>
             <p className="text-sm font-semibold tabular-nums">{formatCo2e(categoryKgCo2ePerYear)}/yr</p>
           </div>
         )}

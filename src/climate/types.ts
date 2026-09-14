@@ -62,6 +62,8 @@ export type ClimateProfile = {
   home: {
     electricityKwhPerMonth: number;
     naturalGasThermsPerMonth?: number;
+    /** ISO 3166-1 alpha-2 code (or "OTHER"). Selects which electricity grid factor to use; see src/climate/geography.ts. */
+    countryCode?: string;
   };
 
   food: {

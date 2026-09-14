@@ -8,7 +8,7 @@ import { calculateTransportation, emissionFactors } from "@/climate";
 
 export default function TransportationCalculatorPage() {
   const { profile, updateCategory } = useProfile();
-  const result = calculateTransportation(profile.transportation, emissionFactors);
+  const result = calculateTransportation(profile.transportation, emissionFactors, profile.home.countryCode);
 
   return (
     <CalculatorShell
